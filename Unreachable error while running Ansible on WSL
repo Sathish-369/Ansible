@@ -1,0 +1,27 @@
+If you encounter an unreachable error while running Ansible commands on WSL, follow these troubleshooting steps:
+
+ 
+    Ping the Target Server:
+    Attempt to ping the target server. If unsuccessful, check the network connectivity.
+
+    Ping External IP (e.g., 8.8.8.8):
+    If the initial ping fails, try pinging an external IP address (e.g., 8.8.8.8). If successful, it indicates a potential DNS issue.
+
+    Check DNS Server in CMD:
+    Open CMD and find the DNS server IP using the command:
+
+ipconfig -all
+
+Take note of the DNS server IP.
+
+Verify DNS Server in resolv.conf:
+Navigate to the resolv.conf file in WSL and confirm that it contains the same DNS server IP obtained from CMD.
+
+Edit resolv.conf if Necessary:
+If the DNS server IP is not present in resolv.conf, open the file using a text editor such as VIM or nano:
+vim /etc/resolv.conf
+
+Add the DNS server details, save the file, and exit (use 'esc' key, type ':wq!', and press Enter in VIM).
+
+Save and Run Command:
+Save the changes to resolv.conf and then rerun the Ansible command.
